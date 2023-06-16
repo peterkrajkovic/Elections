@@ -1,0 +1,26 @@
+﻿<Window x:Class="Elections.NewElection"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Elections"
+        mc:Ignorable="d"
+        Title="NewElection" Height="250" Width="250">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBox Text="Date of election" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10" BorderThickness="0" IsReadOnly="True"/>
+            <DatePicker x:Name="datePicker" Grid.Row="0" HorizontalAlignment="Center"  VerticalAlignment="Bottom" />
+            <TextBox Text="Type of election" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10" BorderThickness="0" IsReadOnly="True"/>
+            <Button  Content="OK" Width="80" Grid.Row="2"  Height="30" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="ok" />
+            <ComboBox Name="comboBox" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="10" Width="Auto" Height="Auto" SelectedIndex="0">
+                <ComboBoxItem Content="Presidential"/>
+                <ComboBoxItem Content="Parliamentary"/>
+            </ComboBox>
+        </Grid>
+    </Grid>
+</Window>

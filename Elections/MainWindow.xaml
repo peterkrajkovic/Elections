@@ -1,0 +1,92 @@
+﻿<Window x:Class="Elections.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Elections"
+        mc:Ignorable="d"
+        Title="Elections" Height="450" Width="650" MinHeight="450" MinWidth="600">
+    <Grid HorizontalAlignment="Stretch" 
+      VerticalAlignment="Stretch" 
+      Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <MenuItem Header="File">
+                <MenuItem Header="New" Click="New" />
+                <MenuItem Header="Open..." Click="Open" />
+                <MenuItem Header="Load SK elections" Click="Load" />
+                <Separator />
+                <MenuItem Header="Exit" Click="Exit" />
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="About" Click="Help" />
+            </MenuItem>
+        </Menu>
+        <Rectangle Grid.Column="0" Grid.Row="1" Stroke="LightGray" RadiusX="5" RadiusY="5" Fill="Transparent" Margin="5"/>
+        <Rectangle Grid.Column="1" Grid.Row="1"  Stroke="LightGray" RadiusX="5" RadiusY="5" Fill="Transparent" Margin="5" />
+        
+        <Grid Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Button x:Name="saveButton" IsEnabled="False" Grid.Row="2" Grid.Column="1"  Content="Save" Width="Auto" MinWidth="80" Height="25" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Click="Save"/>
+            <Button Grid.Row="1" Grid.Column="1"  Content="Clear" Width="Auto" MinWidth="80" Height="25" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Click="Clear"/>
+            <Button x:Name="aboutButton" IsEnabled="False" Grid.Row="3" Grid.Column="1" Content="Results" Width="Auto" MinWidth="80" Height="25" Margin="5" VerticalAlignment="Center" Click="AboutElection" HorizontalAlignment="Right"/>
+            <Button x:Name="coalitionsButton" Grid.Row="4"  Grid.Column="1" Content="Parliament" IsEnabled="false"  Width="Auto" MinWidth="80" Height="25" Margin="5" VerticalAlignment="Center" Click="Coalitions" HorizontalAlignment="Right"/>
+            <Button x:Name="backButton" IsEnabled="false" Grid.Row="5" Grid.Column="1" Content="Back" Width="Auto" MinWidth="80" Height="25" Margin="5" VerticalAlignment="Center" Click="Back" HorizontalAlignment="Right"/>
+            <Button   Grid.Row="0" Grid.Column="1" Content="Show all" Width="Auto" MinWidth="80" Height="25" Margin="5,15,5,5" VerticalAlignment="Center" Click="ShowAll" HorizontalAlignment="Right"/>
+            <ListBox x:Name="results" Grid.Row="1" Grid.Column="0" Grid.RowSpan="5" Width="Auto" Height="Auto" Margin="10,5,5,5" SelectionChanged="ElectionSelected"/>
+            <Rectangle Grid.Column="0" Grid.Row="0" Stroke="LightGray" RadiusX="5" RadiusY="5" Fill="Transparent" Margin="10,20,5,5"/>
+            <TextBox Grid.Column="0" Text="Results " Width="Auto" Height="Auto" Background="Transparent" Margin="5,0,0,0" VerticalAlignment="Top" BorderThickness="0" IsReadOnly="True"/>
+
+            <Grid Grid.Row ="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15,20,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" Text="Choose year: " Width="Auto" Height="Auto"  Margin="5,5,0,5" VerticalAlignment="Center" BorderThickness="0" IsReadOnly="True"/>
+                <ComboBox Grid.Column="1" Name="comboBox" Width="Auto" Height="Auto" IsEnabled="True" SelectedIndex="0" Margin="0,10" VerticalAlignment="Center" HorizontalAlignment="Left" DropDownClosed="YearChanged" SelectionChanged="YearChanged">
+                </ComboBox>
+                </Grid>
+
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBox Grid.Column="0" Text="Edit " Width="Auto" Height="Auto" Background="Transparent" Margin="5,0,0,0" VerticalAlignment="Top" BorderThickness="0" IsReadOnly="True"/>
+            <Button Grid.Row="0"  Content="New" Width="Auto" MinWidth="80" Height="25" Margin="5,20,5,5" VerticalAlignment="Center"  Click="NewElection"/>
+            <Button x:Name="addVotesButton" Grid.Row="1" IsEnabled="False" Content="Add votes" Width="Auto" MinWidth="80" Height="25" Margin="5" VerticalAlignment="Center" Click="AddVotes" />
+            <Button x:Name="addPartyButton" Grid.Row="4" IsEnabled="False" Content="Add party" Width="Auto" MinWidth="80" Height="25" Margin="5" VerticalAlignment="Center" Click="AddParty" />
+            <Button x:Name="removeButton" Grid.Row="3"  IsEnabled="False" Content="Remove" Width="Auto" MinWidth="80" Height="25" Margin="5" VerticalAlignment="Center"  Click="Remove"/>
+            <Button x:Name="subVotesButton" Grid.Row="2" IsEnabled="false" Content="Sub votes" Width="Auto" MinWidth="80" Height="25" Margin="5" VerticalAlignment="Center" Click="SubVotes" />
+            <Button x:Name="removePartyButton" Grid.Row="5" IsEnabled="False" Content="Remove party" Width="Auto" MinWidth="80" Height="25" Margin="5" VerticalAlignment="Center" Click="RemoveParty" />
+            <TextBox x:Name="editBox"  Grid.Row="6"   Width="Auto" Height="Auto" Background="Transparent" Margin="5,0,0,0" VerticalAlignment="Center" BorderThickness="0" IsReadOnly="True"/>
+
+        </Grid>
+    </Grid>
+</Window>
